@@ -1,0 +1,81 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "plugins": ["prettier", "@typescript-eslint", "import"],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "ts": "never"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-plusplus": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      { "typedefs": false, "functions": false, "classes": false, "variables": false }
+    ],
+    "space-before-function-paren": "off",
+    "no-console": "off",
+    "linebreak-style": "off",
+    "func-names": "off",
+    "global-require": "off",
+    "no-unused-expressions": "off",
+    "no-multi-assign": "off",
+    "arrow-parens": "off",
+    "no-param-reassign": "off",
+    "consistent-return": "off",
+    "no-shadow": "off",
+    "comma-dangle": ["error", "only-multiline"],
+    "no-unused-vars": ["off"],
+    "object-curly-newline": [
+      "error",
+      {
+        "consistent": true
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 150,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "no-confusing-arrow": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "index", "sibling", "parent", "object", "type"],
+        "newlines-between": "always"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".json"]
+      },
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    },
+    "import/extensions": [".js", ".ts", ".mjs"]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "removeComments": true,
+    "noUnusedLocals": false,
+    "preserveConstEnums": true,
+    "allowJs": true,
+    "sourceMap": false,
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "target": "es2021",
+    "resolveJsonModule": true,
+    "baseUrl": "src"
+  },
+  "include": ["src/**/*"]
+}

@@ -1,0 +1,106 @@
+Input #0, matroska,webm, from 'http://localhost:7070/Lou.20221080p.NF.WEB-DL.DDP5.1.Atmos.H.264-NAISU.mkv':
+  Metadata:
+    encoder         : libebml v1.4.2 + libmatroska v1.6.4
+  Duration: 01:49:20.80, start: 0.000000, bitrate: 7519 kb/s
+  Stream #0:0: Video: h264 (High), yuv420p(progressive), 1920x1080 [SAR 1:1 DAR 16:9], 24 fps, 24 tbr, 1k tbn (default)
+  Stream #0:1(eng): Audio: eac3, 48000 Hz, 5.1(side), fltp, 768 kb/s (default)
+  Stream #0:2(eng): Subtitle: subrip
+    Metadata:
+      title           : English [SDH]
+  Stream #0:3(ara): Subtitle: subrip
+    Metadata:
+      title           : Arabic
+  Stream #0:4(chi): Subtitle: subrip
+    Metadata:
+      title           : Chinese Simplified
+  Stream #0:5(chi): Subtitle: subrip
+    Metadata:
+      title           : Chinese Traditional
+  Stream #0:6(hrv): Subtitle: subrip
+    Metadata:
+      title           : Croatian
+  Stream #0:7(cze): Subtitle: subrip
+    Metadata:
+      title           : Czech
+  Stream #0:8(dan): Subtitle: subrip
+    Metadata:
+      title           : Danish
+  Stream #0:9(dut): Subtitle: subrip
+    Metadata:
+      title           : Dutch
+  Stream #0:10(spa): Subtitle: subrip
+    Metadata:
+      title           : European Spanish
+  Stream #0:11(fil): Subtitle: subrip
+    Metadata:
+      title           : Filipino
+  Stream #0:12(fin): Subtitle: subrip
+    Metadata:
+      title           : Finnish
+  Stream #0:13(fre): Subtitle: subrip
+    Metadata:
+      title           : French
+  Stream #0:14(ger): Subtitle: subrip
+    Metadata:
+      title           : German
+  Stream #0:15(gre): Subtitle: subrip
+    Metadata:
+      title           : Greek
+  Stream #0:16(heb): Subtitle: subrip
+    Metadata:
+      title           : Hebrew
+  Stream #0:17(hun): Subtitle: subrip
+    Metadata:
+      title           : Hungarian
+  Stream #0:18(ind): Subtitle: subrip
+    Metadata:
+      title           : Indonesian
+  Stream #0:19(ita): Subtitle: subrip
+    Metadata:
+      title           : Italian
+  Stream #0:20(jpn): Subtitle: subrip
+    Metadata:
+      title           : Japanese
+  Stream #0:21(kor): Subtitle: subrip
+    Metadata:
+      title           : Korean
+  Stream #0:22(may): Subtitle: subrip
+    Metadata:
+      title           : Malay
+  Stream #0:23(nob): Subtitle: subrip
+    Metadata:
+      title           : Norwegian Bokmål
+  Stream #0:24(pol): Subtitle: subrip
+    Metadata:
+      title           : Polish
+  Stream #0:25(por): Subtitle: subrip
+    Metadata:
+      title           : Portuguese
+  Stream #0:26(por): Subtitle: subrip
+    Metadata:
+      title           : Portuguese Brazilian
+  Stream #0:27(rum): Subtitle: subrip
+    Metadata:
+      title           : Romanian
+  Stream #0:28(rus): Subtitle: subrip
+    Metadata:
+      title           : Russian
+  Stream #0:29(spa): Subtitle: subrip
+    Metadata:
+      title           : Spanish
+  Stream #0:30(swe): Subtitle: subrip
+    Metadata:
+      title           : Swedish
+  Stream #0:31(tha): Subtitle: subrip
+    Metadata:
+      title           : Thai
+  Stream #0:32(tur): Subtitle: subrip
+    Metadata:
+      title           : Turkish
+  Stream #0:33(ukr): Subtitle: subrip
+    Metadata:
+      title           : Ukrainian
+  Stream #0:34(vie): Subtitle: subrip
+    Metadata:
+      title           : Vietnamese
+At least one output file must be specified
