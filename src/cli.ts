@@ -5,6 +5,7 @@ import { parserConfiguration } from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
 
+import cut from './cut';
 import parseStreams from './parser';
 
 parserConfiguration({
@@ -16,6 +17,9 @@ const argv = yargs(hideBin(process.argv))
   .options({
     verbose: { type: 'boolean' },
     format: { type: 'string' },
+    start: { type: 'string', alias: 's' },
+    to: { type: 'string', alias: 't' },
+    filter: { type: 'string', alias: 'f' },
   })
   .alias('help', 'h')
   .check((argv) => {
@@ -30,7 +34,7 @@ const run = (input: Buffer) => {
   if (!input.length) {
     throw new Error('Empty input. Do you forget "2>&1"?\nExample: ffmpeg -i "file" 2>&1 | ffmpeg-cut');
   }
-  parse(input);
+  parse(input, '-');
 };
 
 async function read(t: NodeJS.ReadStream) {
@@ -53,16 +57,26 @@ if (process.stdin.isTTY) {
         throw new Error(r.message);
       }
       const ffOutput = r.stderr;
-      parse(ffOutput);
+      parse(ffOutput, file);
     });
 } else {
   read(process.stdin).then(run);
 }
 
-function parse(ffOutput: string | Buffer) {
+function parse(ffOutput: string | Buffer, source: string) {
+  console.error(`Input: ${source === '-' ? 'stdin' : source}`);
   const streams = parseStreams(ffOutput);
   if (argv.verbose) {
     console.error(ffOutput);
+  }
+
+  if (argv.start || argv.to || argv.filter) {
+    if (!streams) {
+      throw new Error('Invalid input');
+    }
+    // cut
+    cut({ sourceFile: source, input: streams, selector: argv.filter || '', start: argv.start, to: argv.to });
+    return;
   }
 
   if (argv.format === 'json') {

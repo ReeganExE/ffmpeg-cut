@@ -11,7 +11,7 @@ interface StreamItem {
   codec?: string;
 }
 
-interface FFMpegInfo {
+export interface FFMpegInfo {
   streams: StreamItem[];
   duration: string;
   bitrate: string;
