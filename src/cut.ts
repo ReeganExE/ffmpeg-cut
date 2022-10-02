@@ -29,34 +29,37 @@ export default async function cut({ input, sourceFile, start, to }: CutArgs) {
     child.on('close', () => process.exit(1));
   });
 
+  function exec(args: string[]) {
+    // Keep reference for SIGTERM
+    child = execa('ffmpeg', args, { stderr: 'inherit' });
+    return child;
+  }
+
   const file = path.parse(sourceFile);
   const tempFile = `${file.name}-temp.${file.ext}`;
   const isRemote = sourceFile.startsWith('http');
   if (isRemote) {
     console.error(chalk.yellowBright(`Cutting file ...: ${tempFile}`));
+
     // we have to cut it to a local file
-    child = execa(
-      'ffmpeg',
-      [
-        '-hide_banner',
-        ...seeks,
-        '-i',
-        sourceFile,
-        '-map',
-        '0',
-        '-map_chapters',
-        '-1',
-        '-c',
-        'copy',
-        '-stats',
-        '-loglevel',
-        'error',
-        '-y',
-        tempFile,
-      ],
-      { stderr: 'inherit' }
-    );
-    await child;
+    await exec([
+      '-hide_banner',
+      ...seeks,
+      '-i',
+      sourceFile,
+      '-map',
+      '0',
+      '-map_chapters',
+      '-1',
+      '-c',
+      'copy',
+      '-stats',
+      '-loglevel',
+      'error',
+      '-y',
+      tempFile,
+    ]);
+    // as file already cut, no further seeking
     seeks = [];
   }
 
@@ -90,8 +93,7 @@ export default async function cut({ input, sourceFile, start, to }: CutArgs) {
 
   console.error(chalk.yellowBright(app.join(' ')));
   try {
-    child = execa('ffmpeg', app.slice(1), { stderr: 'inherit' });
-    await child;
+    await exec(app.slice(1));
   } catch (error) {
     const err = error as execa.ExecaError;
     console.error(err.stderr);
