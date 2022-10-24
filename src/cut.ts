@@ -36,7 +36,7 @@ export default async function cut({ input, sourceFile, start, to }: CutArgs) {
   }
 
   const file = path.parse(sourceFile);
-  const tempFile = `${file.name}-temp.${file.ext}`;
+  const tempFile = `${file.name}-temp${file.ext}`;
   const isRemote = sourceFile.startsWith('http');
   if (isRemote) {
     console.error(chalk.yellowBright(`Cutting file ...: ${tempFile}`));
@@ -74,7 +74,7 @@ export default async function cut({ input, sourceFile, start, to }: CutArgs) {
     '-i',
     sourceFile,
     '-vf',
-    `subtitles=${sourceFile}${si}:force_style='Fontsize=48,PrimaryColour=&H0001FBFE&'`,
+    `subtitles=${sourceFile}${si}:force_style='Fontsize=22,PrimaryColour=&H0001FBFE&'`,
     '-c:v',
     'hevc_videotoolbox',
     '-q:v',
@@ -87,11 +87,12 @@ export default async function cut({ input, sourceFile, start, to }: CutArgs) {
     'aac',
     '-stats',
     '-loglevel',
-    `${file.name}-cut.${file.ext}`,
+    'error',
+    `${file.name}-cut${file.ext}`,
     '-y',
   ];
 
-  console.error(chalk.yellowBright(app.join(' ')));
+  console.error(chalk.yellowBright(printCommand(app)));
   try {
     await exec(app.slice(1));
   } catch (error) {
@@ -101,4 +102,20 @@ export default async function cut({ input, sourceFile, start, to }: CutArgs) {
   } finally {
     isRemote && fs.unlink(tempFile);
   }
+}
+
+function printCommand(app: string[]): string {
+  const rs: string[] = [];
+  for (let i = 0; i < app.length; ) {
+    const next = app[i + 1];
+    if (next && !next.startsWith('-')) {
+      rs.push(`${app[i]} ${app[i + 1]}`);
+      i += 2;
+    } else {
+      rs.push(app[i]);
+      i++;
+    }
+  }
+
+  return rs.join(' \\\n  ');
 }
