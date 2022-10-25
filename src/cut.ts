@@ -73,6 +73,10 @@ export default async function cut({ input, sourceFile, start, to }: CutArgs) {
     ...seeks,
     '-i',
     sourceFile,
+    '-map',
+    '0',
+    '-map',
+    '-0:s',
     '-vf',
     `subtitles=${sourceFile}${si}:force_style='Fontsize=22,PrimaryColour=&H0001FBFE&'`,
     '-c:v',
@@ -108,7 +112,8 @@ function printCommand(app: string[]): string {
   const rs: string[] = [];
   for (let i = 0; i < app.length; ) {
     const next = app[i + 1];
-    if (next && !next.startsWith('-')) {
+    // support negative map: -map -0:s
+    if (next && (app[i] === '-map' || !next.startsWith('-'))) {
       rs.push(`${app[i]} ${app[i + 1]}`);
       i += 2;
     } else {
