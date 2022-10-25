@@ -42,7 +42,7 @@
     "ffmpeg cut"
   ],
   "author": "Ninh Pham (ReeganExE)",
-  "license": "ISC",
+  "license": "New BSD",
   "description": "An npm package which supports parsing `ffmpeg`'s streams output and generates `ffmpeg` config for cutting video.",
   "repository": {
     "type": "git",
