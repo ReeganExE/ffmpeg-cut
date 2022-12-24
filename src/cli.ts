@@ -14,6 +14,7 @@ parserConfiguration({
 
 const argv = yargs(hideBin(process.argv))
   .help(true)
+  .strictOptions()
   .options({
     verbose: { type: 'boolean' },
     format: { type: 'string' },

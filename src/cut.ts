@@ -96,15 +96,19 @@ export default async function cut({ input, sourceFile, start, to }: CutArgs) {
     '-y',
   ];
 
+  let hasError = false;
   console.error(chalk.yellowBright(printCommand(app)));
   try {
     await exec(app.slice(1));
   } catch (error) {
+    hasError = true;
     const err = error as execa.ExecaError;
     console.error(err.stderr);
     throw new Error(`ffmpeg error code: ${err.exitCode}`);
   } finally {
-    isRemote && fs.unlink(tempFile);
+    if (isRemote && !hasError) {
+      fs.unlink(tempFile);
+    }
   }
 }
 
